@@ -12,5 +12,6 @@ namespace ApotekHjartat.Order.DbAccess.Context
 
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<CustomerOrder> CustomerOrder { get; set; }
+        public virtual DbSet<CustomerOrderRow> CustomerOrderRow { get; set; }
     }
 }

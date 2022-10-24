@@ -12,8 +12,11 @@ namespace ApotekHjartat.Order.DbAccess.Models
         public int OrderedAmount { get; set; }
 
         public int ProductId { get; set; }
+        [StringLength(100)]
         public string ProductName { get; set; }
-
+        public decimal PriceExclVat { get; set; }
+        public decimal Vat { get; set; }
+        public bool IsRx { get; set; }
         public int CustomerOrderId { get; set; }
         [ForeignKey(nameof(CustomerOrderId))]
         [InverseProperty("CustomerOrderRow")]

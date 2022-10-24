@@ -16,7 +16,8 @@ namespace ApotekHjartat.Order.DbAccess.Models
         public string Name { get; set; }
         public bool InStock { get; set; }
         public Decimal PriceExclVat { get; set; }
-        public Decimal VAT { get; set; }
+        public Decimal Vat { get; set; }
+        [StringLength(20)]
         public string VaraArticleType { get; set; }
     }
 }
