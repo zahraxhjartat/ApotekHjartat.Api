@@ -1,5 +1,5 @@
 ﻿using ApotekHjartat.Order.Api.Models;
-using ApotekHjartat.Order.Api.Controllers.Services;
+using ApotekHjartat.Order.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
