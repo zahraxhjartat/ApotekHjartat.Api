@@ -13,8 +13,7 @@ namespace ApotekHjartat.Order.Api.Extensions
         {
             return new CustomerOrder()
             {
-                OrderNumber = from.OrderNumber,
-                IsRxOrder = from.ContainsRx
+                OrderNumber = from.OrderNumber
             };
         }
 
@@ -23,8 +22,7 @@ namespace ApotekHjartat.Order.Api.Extensions
             return new CustomerOrderDto()
             {
                 CustomerOrderId = from.CustomerOrderId,
-                OrderNumber = from.OrderNumber,
-                ContainsRx = from.IsRxOrder
+                OrderNumber = from.OrderNumber
             };
         }
     }

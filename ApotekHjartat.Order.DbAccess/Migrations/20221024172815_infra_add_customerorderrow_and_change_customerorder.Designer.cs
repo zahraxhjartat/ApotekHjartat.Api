@@ -3,14 +3,16 @@ using ApotekHjartat.Order.DbAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApotekHjartat.Order.DbAccess.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    partial class OrderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221024172815_infra_add_customerorderrow_and_change_customerorder")]
+    partial class infra_add_customerorderrow_and_change_customerorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,24 +61,14 @@ namespace ApotekHjartat.Order.DbAccess.Migrations
                     b.Property<int>("CustomerOrderId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsRx")
-                        .HasColumnType("bit");
-
                     b.Property<int>("OrderedAmount")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("PriceExclVat")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<decimal>("Vat")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderRowId");
 
@@ -102,12 +94,11 @@ namespace ApotekHjartat.Order.DbAccess.Migrations
                     b.Property<decimal>("PriceExclVat")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("VaraArticleType")
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<decimal>("Vat")
+                    b.Property<decimal>("VAT")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("VaraArticleType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 

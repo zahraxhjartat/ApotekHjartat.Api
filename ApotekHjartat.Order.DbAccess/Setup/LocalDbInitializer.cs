@@ -1,4 +1,5 @@
 ﻿using ApotekHjartat.Order.DbAccess.Context;
+using ApotekHjartat.Order.DbAccess.Extentions;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApotekHjartat.Order.DbAccess.Setup
@@ -12,6 +13,9 @@ namespace ApotekHjartat.Order.DbAccess.Setup
             {
                 context.Database.Migrate();
             }
+
+            context.SeedData();
+
         }
     }
 }
