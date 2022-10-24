@@ -1,0 +1,15 @@
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.deps.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.Common.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.Common.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.csprojAssemblyReference.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.AssemblyInfoInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.AssemblyInfo.cs
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.csproj.CoreCompileInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.csproj.CopyComplete
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.runtimeconfig.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.runtimeconfig.dev.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Order.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.Order.DbAccess.genruntimeconfig.cache
