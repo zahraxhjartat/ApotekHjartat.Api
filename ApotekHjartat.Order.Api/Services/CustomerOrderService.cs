@@ -4,7 +4,7 @@ using ApotekHjartat.Order.DbAccess.DataAccess.v1;
 using System;
 using System.Threading.Tasks;
 
-namespace ApotekHjartat.Order.Api.Controllers.Services
+namespace ApotekHjartat.Order.Api.Services
 {
     public class CustomerOrderService : ICustomerOrderService
     {

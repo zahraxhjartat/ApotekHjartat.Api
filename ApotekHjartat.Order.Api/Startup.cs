@@ -1,5 +1,5 @@
 
-using ApotekHjartat.Order.Api.Controllers.Services;
+using ApotekHjartat.Order.Api.Services;
 using ApotekHjartat.Order.Common.Swagger;
 using ApotekHjartat.Order.DbAccess.Context;
 using ApotekHjartat.Order.DbAccess.DataAccess.v1;
