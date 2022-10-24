@@ -23,7 +23,7 @@ namespace ApotekHjartat.Order.Api.UnitTest.Services
         [Fact]
         public async Task GetCustomerOrderById()
         {
-            var order1 = new CustomerOrder() { CustomerOrderId = 1, OrderNumber = "100", IsRxOrder = false };
+            var order1 = new CustomerOrder() { CustomerOrderId = 1, OrderNumber = "100" };
             CustomerOrderDataAccess.Setup(x => x.GetCustomerOrderById(It.Is<int>(x => x == 1))).Returns(Task.FromResult(order1));
 
             var returnedOrder = await CustomerOrderService.GetCustomerOrderById(1);
