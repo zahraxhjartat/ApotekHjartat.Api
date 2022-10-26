@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Common", "Apo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{709CE08B-C87A-4640-BFF7-4255C5E19333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApotekHjartat.Api.UnitTest", "ApotekHjartat.Api.UnitTest\ApotekHjartat.Api.UnitTest.csproj", "{7FEE0E8A-FB31-4296-90C4-7550C450F89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Api.UnitTest", "Tests\ApotekHjartat.Api.UnitTest\ApotekHjartat.Api.UnitTest.csproj", "{7FEE0E8A-FB31-4296-90C4-7550C450F89A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Api.IntegrationTest", "Tests\ApotekHjartat.Api.IntegrationTests\ApotekHjartat.Api.IntegrationTest.csproj", "{0103E56B-632F-41DB-8B0F-D977F0F6346C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +37,17 @@ Global
 		{7FEE0E8A-FB31-4296-90C4-7550C450F89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FEE0E8A-FB31-4296-90C4-7550C450F89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FEE0E8A-FB31-4296-90C4-7550C450F89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0103E56B-632F-41DB-8B0F-D977F0F6346C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0103E56B-632F-41DB-8B0F-D977F0F6346C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0103E56B-632F-41DB-8B0F-D977F0F6346C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0103E56B-632F-41DB-8B0F-D977F0F6346C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7FEE0E8A-FB31-4296-90C4-7550C450F89A} = {709CE08B-C87A-4640-BFF7-4255C5E19333}
+		{0103E56B-632F-41DB-8B0F-D977F0F6346C} = {709CE08B-C87A-4640-BFF7-4255C5E19333}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {145F92F8-7F51-4D3F-84DE-FACB08D081D7}

@@ -3,6 +3,7 @@ using ApotekHjartat.Api.Services;
 using ApotekHjartat.Common.Swagger;
 using ApotekHjartat.DbAccess.Context;
 using ApotekHjartat.DbAccess.DataAccess;
+using ApotekHjartat.DbAccess.IoC;
 using ApotekHjartat.DbAccess.Setup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,13 +64,8 @@ namespace ApotekHjartat.Api
 
         public virtual void ConfigureDataAccess(IServiceCollection services)
         {
-            services.AddTransient<ICustomerOrderDataAccess, CustomerOrderDataAccess>();
-            var connectionString = Configuration.GetSection("ConnectionStrings")["DefaultConnection"];
-
-            services.AddDbContext<OrderDbContext>(
-               option => option
-               .EnableSensitiveDataLogging()
-               .UseSqlServer(connectionString, (providerOptions) => { providerOptions.CommandTimeout(180); }), ServiceLifetime.Scoped);
+            services.AddDataAccessServices();
+            services.AddDbContext(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
