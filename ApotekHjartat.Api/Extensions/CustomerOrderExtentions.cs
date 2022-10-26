@@ -139,6 +139,8 @@ namespace ApotekHjartat.Api.Extensions
                     return CustomerOrderStatusDto.Refunded;
                 case CustomerOrderStatus.Shipped:
                     return CustomerOrderStatusDto.Shipped;
+                case CustomerOrderStatus.Archived:
+                    return CustomerOrderStatusDto.Archived;
 
 
                 default:
@@ -172,6 +174,8 @@ namespace ApotekHjartat.Api.Extensions
                     return CustomerOrderStatus.Refunded;
                 case CustomerOrderStatusDto.Shipped:
                     return CustomerOrderStatus.Shipped;
+                case CustomerOrderStatusDto.Archived:
+                    return CustomerOrderStatus.Archived;
 
 
                 default:
@@ -203,6 +207,19 @@ namespace ApotekHjartat.Api.Extensions
             dtoRows.Add(prescriptionBagRow);
 
             return dtoRows;
+        }
+
+        public static CustomerOrderFilter ToDbModel(this CustomerOrderFilterDto from)
+        {
+            return new CustomerOrderFilter
+            {
+                CustomerOrderStatus = from.CustomerOrderStatus?.ToDbModel(),
+                OrderNumber = from.OrderNumber,
+                FromDate = from.FromDate,
+                ToDate = from.ToDate,
+                Skip = from.Skip,
+                Take = from.Take
+            };
         }
     }
 }

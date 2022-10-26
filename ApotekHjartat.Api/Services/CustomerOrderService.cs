@@ -7,6 +7,8 @@ using ApotekHjartat.DbAccess.DataAccess;
 using ApotekHjartat.Common.Exceptions;
 using ApotekHjartat.DbAccess.Enums;
 using System.Collections.Generic;
+using System.Linq;
+using ApotekHjartat.DbAccess.Models;
 
 namespace ApotekHjartat.Api.Services
 {
@@ -39,9 +41,9 @@ namespace ApotekHjartat.Api.Services
         public async Task<CustomerOrderDto> CancelCustomerOrderById(int id)
         {
             var statusesByWhichOrderIsAllowedToBeCancelled = new List<CustomerOrderStatus> { CustomerOrderStatus.NotYetProccessed,
-                                                                                       CustomerOrderStatus.ReadyForPicking,
-                                                                                       CustomerOrderStatus.Processing,
-                                                                                       CustomerOrderStatus.Approved };
+                                                                                             CustomerOrderStatus.ReadyForPicking,
+                                                                                             CustomerOrderStatus.Processing,
+                                                                                             CustomerOrderStatus.Approved };
 
             var dbCustomerOrder = await _customerOrderDataAccess.GetCustomerOrderById(id);
             if (dbCustomerOrder == null)
@@ -59,6 +61,49 @@ namespace ApotekHjartat.Api.Services
 
             return updatedOrder.ToDto();
         }
+
+        public async Task<PaginatedResponseDto<CustomerOrderDto>> GetCustomerOrdersByFilter(CustomerOrderFilterDto filter)
+        {
+
+            var response = new PaginatedResponseDto<CustomerOrderDto>();
+            List<CustomerOrder> list;
+
+            (list, response.TotalCount) = await _customerOrderDataAccess.GetCustomerOrdersByFilter(filter.ToDbModel());
+            response.Page = list.Select(x => x.ToDto()).ToList();
+
+            if (response.Page.Count < filter.Take)
+            {
+                response.Next = null;
+            }
+            else
+            {
+                response.Next = response.Page.Count + filter.Skip;
+            }
+
+            return response;
+        }
+
+        public async Task<CustomerOrderDto> DeleteCustomerOrderCustomerDataById(int id)
+        {
+
+            var statusesByWhichOrderIsAllowedToBeCancelled = new List<CustomerOrderStatus> { CustomerOrderStatus.Cancelled,
+                                                                                             CustomerOrderStatus.Refunded,
+                                                                                             CustomerOrderStatus.Archived};
+            var dbCustomerOrder = await _customerOrderDataAccess.GetCustomerOrderById(id);
+            if (dbCustomerOrder == null)
+            {
+                throw new NotFoundException($"Could not find customer order with id {id}");
+            }
+
+            if (!statusesByWhichOrderIsAllowedToBeCancelled.Contains(dbCustomerOrder.OrderStatus))
+            {
+                throw new NotAllowedException($"Order is not allowed to lose customer data yet");
+            }
+
+            var updatedOrder = await _customerOrderDataAccess.DeleteCustomerOrderCustomerDataById(id);
+
+            return updatedOrder.ToDto();
+        }
     }
 
     public interface ICustomerOrderService
@@ -66,5 +111,7 @@ namespace ApotekHjartat.Api.Services
         Task<CustomerOrderDto> CreateCustomerOrder(AddCustomerOrderDto data);
         Task<CustomerOrderDto> GetCustomerOrderById(int id);
         Task<CustomerOrderDto> CancelCustomerOrderById(int id);
+        Task<PaginatedResponseDto<CustomerOrderDto>> GetCustomerOrdersByFilter(CustomerOrderFilterDto filter);
+        Task<CustomerOrderDto> DeleteCustomerOrderCustomerDataById(int id);
     }
 }
