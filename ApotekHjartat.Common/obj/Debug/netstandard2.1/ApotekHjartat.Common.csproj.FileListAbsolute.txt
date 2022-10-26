@@ -1,0 +1,9 @@
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\bin\Debug\netstandard2.1\ApotekHjartat.Common.deps.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\bin\Debug\netstandard2.1\ApotekHjartat.Common.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\bin\Debug\netstandard2.1\ApotekHjartat.Common.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.csprojAssemblyReference.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.AssemblyInfoInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.AssemblyInfo.cs
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.csproj.CoreCompileInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.Common\obj\Debug\netstandard2.1\ApotekHjartat.Common.pdb

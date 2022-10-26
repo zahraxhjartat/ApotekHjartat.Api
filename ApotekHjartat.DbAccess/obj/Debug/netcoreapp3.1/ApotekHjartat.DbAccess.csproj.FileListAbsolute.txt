@@ -1,0 +1,15 @@
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.csprojAssemblyReference.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.AssemblyInfoInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.AssemblyInfo.cs
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.csproj.CoreCompileInputs.cache
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.deps.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.runtimeconfig.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.runtimeconfig.dev.json
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Common.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\bin\Debug\netcoreapp3.1\ApotekHjartat.Common.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.csproj.CopyComplete
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.dll
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.pdb
+C:\Users\Zahra\source\repos\ApotekHjartat.Order.Api\ApotekHjartat.DbAccess\obj\Debug\netcoreapp3.1\ApotekHjartat.DbAccess.genruntimeconfig.cache
