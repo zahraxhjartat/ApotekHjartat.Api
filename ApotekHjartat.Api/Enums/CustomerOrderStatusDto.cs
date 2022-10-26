@@ -12,6 +12,7 @@ namespace ApotekHjartat.Api.Enums
         Packing = 6,
         Shipped = 7,
         Cancelled = 8,
-        Refunded = 9
+        Refunded = 9,
+        Archived = 10
     }
 }
