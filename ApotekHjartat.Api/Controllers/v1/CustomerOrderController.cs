@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using ApotekHjartat.Api.Extensions;
 using ApotekHjartat.Common.Exceptions;
 using ApotekHjartat.Api.Models.v1;
 
@@ -33,7 +32,7 @@ namespace ApotekHjartat.Api.Controllers.v1
         [HttpPost]
         public async Task<ActionResult<CustomerOrderDto>> CreateCustomerOrder([BindRequired][FromBody] AddCustomerOrderDto data)
         {
-            if(!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest();
             var createdCustomerOrder = await _customerOrderService.CreateCustomerOrder(data);
             return Ok(createdCustomerOrder);
         }
@@ -56,10 +55,27 @@ namespace ApotekHjartat.Api.Controllers.v1
             try
             {
                 return await _customerOrderService.GetCustomerOrderById(id);
-            }catch(NotFoundException ex)
+            }
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Cancel specific customer order by id
+        /// </summary>
+        /// <param name="id">Customer Order Id</param>
+        /// <response code="200">Ok</response>
+        /// <response code="400">Bad Request</response>
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(ActionResult<CustomerOrderDto>))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [HttpPut("cancel/{id}")]
+        public async Task<ActionResult<CustomerOrderDto>> CancelCustomerOrderById([BindRequired]int id)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            var updatedOrder = await _customerOrderService.CancelCustomerOrderById(id);
+            return Ok(updatedOrder);
         }
 
     }

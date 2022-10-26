@@ -13,27 +13,6 @@ namespace ApotekHjartat.Api.Extensions
 {
     public static class CustomerOrderExtentions
     {
-        //public static CustomerOrder ToDbModel(this CustomerOrderDto from)
-        //{
-        //    return new CustomerOrder()
-        //    {
-        //        OrderNumber = from.OrderNumber
-        //    };
-        //}
-
-        //public static CustomerOrderDto ToDto(this CustomerOrder from)
-        //{
-        //    return new CustomerOrderDto()
-        //    {
-        //        CustomerOrderId = from.CustomerOrderId,
-        //        OrderNumber = from.OrderNumber,
-        //        CustomerEmailAddress = from.CustomerEmailAddress,
-        //        CustomerFirstName = from.CustomerFirstName,
-        //        CustomerSurname = from.CustomerSurname,
-        //        CustomerAddress = from.CustomerAddress,
-        //        CustomerOrderRows = from.CustomerOrderRow?.Select(x => x.ToDto()).ToList(),
-        //    };
-        //}
 
         public static CustomerOrder ToDbModel(this AddCustomerOrderDto from)
         {
@@ -107,7 +86,6 @@ namespace ApotekHjartat.Api.Extensions
             {
                 CustomerOrderId = from.CustomerOrderId,
                 OrderNumber = from.OrderNumber,
-
                 Created = from.Created,
                 CustomerAddress = from.CustomerAddress,
                 CustomerEmailAddress = from.CustomerEmailAddress,
@@ -118,6 +96,24 @@ namespace ApotekHjartat.Api.Extensions
                 CustomerOrderRows = ConvertCustomerOrderRowsToDto(from.CustomerOrderRows)
             };
         }
+
+        public static CustomerOrderDto ToClassifiedDto(this CustomerOrder from)
+        {
+            return new CustomerOrderDto()
+            {
+                CustomerOrderId = from.CustomerOrderId,
+                OrderNumber = from.OrderNumber,
+                Created = from.Created,
+                CustomerAddress = from.CustomerAddress,
+                CustomerEmailAddress = from.CustomerEmailAddress,
+                CustomerFirstName = from.CustomerFirstName,
+                CustomerSurname = from.CustomerSurname,
+                OrderStatus = from.OrderStatus.ToDto(),
+                TrackingNumber = from?.TrackingNumber,
+                CustomerOrderRows = from.CustomerOrderRows?.Select(x => x.ToDto()).ToList()
+            };
+        }
+
         public static CustomerOrderStatusDto ToDto(this CustomerOrderStatus value)
         {
             switch (value)
