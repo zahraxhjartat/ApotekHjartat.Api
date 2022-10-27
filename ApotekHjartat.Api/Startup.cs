@@ -79,7 +79,7 @@ namespace ApotekHjartat.Api
                 // migrate and seed database locally
                 using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
                 var dbContext = serviceScope.ServiceProvider.GetService<OrderDbContext>();
-                dbContext.SetupLocalDb().GetAwaiter();
+                dbContext.SetupLocalDb();
 
                 app.UseSwagger(c =>
                 {

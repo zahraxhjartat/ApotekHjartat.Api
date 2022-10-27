@@ -1,5 +1,4 @@
 ﻿using ApotekHjartat.DbAccess.Context;
-using ApotekHjartat.DbAccess.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -9,7 +8,7 @@ namespace ApotekHjartat.DbAccess.Setup
 {
     public static class LocalDbInitializer
     {
-        public static async Task SetupLocalDb(this OrderDbContext context)
+        public static void SetupLocalDb(this OrderDbContext context)
         {
             // Do not migrate when testing
             if (context.Database.IsSqlServer())
@@ -21,7 +20,7 @@ namespace ApotekHjartat.DbAccess.Setup
 
             try
             {
-                await SeedData(context);
+                SeedData(context).GetAwaiter().GetResult();
             }
             catch (Exception e)
             {
@@ -34,10 +33,8 @@ namespace ApotekHjartat.DbAccess.Setup
             var mockData = new MockDataFactory();
             var products = mockData.GetProducts();
             var orders = mockData.GetCustomerOrders();
-            var orderRows = mockData.GetCustomerOrderRows();
             context.Product.AddRange(products);
             context.CustomerOrder.AddRange(orders);
-            context.CustomerOrderRow.AddRange(orderRows);
             await context.SaveChangesAsync();
         }
     }
