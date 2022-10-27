@@ -8,6 +8,8 @@ Hade det varit ett lagersystem så hade jag dock ex tagit hänsyn till narkotika
 
 Då jag utgick från att det är ett admingränssnitt kommer ropa på alla get metoder, så ser jag till att alla receptlagda varor hamnar i en receptpåse, då innehållet är klassificierad information som inte vemsomhelst får se.
 
+OBS: jag tänkte först att jag skulle skicka en ZIP fil då jag vart orolig att någon från mitt nuvarande företag skulle förstå att jag har ansökt till ett annat bolag, därför började jag versionshantera efter min initiala setup.
+
 ## Hur man kommer igång
 Om man startar projektet så kommer en lokal db skapas. Man kan då använda swagger för att testa alla endpoints.
 Tänk på att du behöver ladda ner sql server Developer version och SSMS om du inte redan har det.
