@@ -21,6 +21,7 @@ namespace ApotekHjartat.Api.Controllers.v1
         {
             _customerOrderService = customerOrderService ?? throw new ArgumentNullException(nameof(customerOrderService));
         }
+
         /// <summary>
         /// Create customer order
         /// </summary>
@@ -29,10 +30,11 @@ namespace ApotekHjartat.Api.Controllers.v1
         /// <response code="400">Bad Request</response>
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(ActionResult<CustomerOrderDto>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [HttpPost]
-        public async Task<ActionResult<CustomerOrderDto>> CreateCustomerOrder([BindRequired][FromBody] AddCustomerOrderDto data)
+        [HttpPost("add")]
+        public async Task<ActionResult<CustomerOrderDto>> CreateCustomerOrder([FromBody] AddCustomerOrderDto data)
         {
             if (!ModelState.IsValid) return BadRequest();
+
             var createdCustomerOrder = await _customerOrderService.CreateCustomerOrder(data);
             return Ok(createdCustomerOrder);
         }
@@ -84,7 +86,7 @@ namespace ApotekHjartat.Api.Controllers.v1
             {
                 return NotFound(ex.Message);
             }
-            catch(NotAllowedException ex)
+            catch (NotAllowedException ex)
             {
                 return BadRequest(ex.Message);
             }
