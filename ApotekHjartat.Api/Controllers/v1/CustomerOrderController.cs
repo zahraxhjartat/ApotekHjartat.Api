@@ -17,7 +17,7 @@ namespace ApotekHjartat.Api.Controllers.v1
     {
         private readonly ICustomerOrderService _customerOrderService;
 
-        private CustomerOrderController(ICustomerOrderService customerOrderService)
+        public CustomerOrderController(ICustomerOrderService customerOrderService)
         {
             _customerOrderService = customerOrderService ?? throw new ArgumentNullException(nameof(customerOrderService));
         }

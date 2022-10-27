@@ -14,7 +14,6 @@ namespace ApotekHjartat.Api.Models
         public CustomerOrderStatusDto OrderStatus { get; set; }
         public string TrackingNumber { get; set; }
         public DateTime Created { get; set; }
-        public Guid UserId { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerSurname { get; set; }
         public string CustomerEmailAddress { get; set; }

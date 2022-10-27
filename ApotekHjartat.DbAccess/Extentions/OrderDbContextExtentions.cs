@@ -13,7 +13,6 @@ namespace ApotekHjartat.DbAccess.Extentions
             var orderRows = mockData.GetCustomerOrderRows();
             context.Product.AddRange(products);
             context.CustomerOrder.AddRange(orders);
-            context.SaveChanges();
             context.CustomerOrderRow.AddRange(orderRows);
             context.SaveChangesAsync();
         }

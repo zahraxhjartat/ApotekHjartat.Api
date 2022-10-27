@@ -4,16 +4,16 @@ using ApotekHjartat.Api.Models.v1;
 using ApotekHjartat.Common.Exceptions;
 using ApotekHjartat.DbAccess.Enums;
 using ApotekHjartat.DbAccess.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApotekHjartat.Api.Extensions
 {
     public static class CustomerOrderExtentions
     {
-
+        /// <summary>
+        /// Convert AddCustomerOrderDto to CustomerOrder
+        /// </summary>
         public static CustomerOrder ToDbModel(this AddCustomerOrderDto from)
         {
             return new CustomerOrder
@@ -26,6 +26,9 @@ namespace ApotekHjartat.Api.Extensions
             };
         }
 
+        /// <summary>
+        /// Convert BasketRowDto to CustomerOrderRow
+        /// </summary>
         public static CustomerOrderRow ToDbModel(this BasketRowDto from)
         {
             return new CustomerOrderRow
@@ -39,7 +42,9 @@ namespace ApotekHjartat.Api.Extensions
             };
         }
 
-
+        /// <summary>
+        /// Convert CustomerOrderRowTypeDto to db model
+        /// </summary>
         public static CustomerOrderRowType ToDbModel(this CustomerOrderRowTypeDto value)
         {
             switch (value)
@@ -60,6 +65,9 @@ namespace ApotekHjartat.Api.Extensions
 
         }
 
+        /// <summary>
+        /// Convert CustomerOrderRowType to db model
+        /// </summary>
         public static CustomerOrderRowTypeDto ToDto(this CustomerOrderRowType value)
         {
             switch (value)
@@ -80,6 +88,9 @@ namespace ApotekHjartat.Api.Extensions
 
         }
 
+        /// <summary>
+        /// Convert CustomerOrder to dto model, merge rx into a prescription bag
+        /// </summary>
         public static CustomerOrderDto ToDto(this CustomerOrder from)
         {
             return new CustomerOrderDto()
@@ -97,6 +108,9 @@ namespace ApotekHjartat.Api.Extensions
             };
         }
 
+        /// <summary>
+        /// Convert CustomerOrder to dto model, return classified rx rows as well
+        /// </summary>
         public static CustomerOrderDto ToClassifiedDto(this CustomerOrder from)
         {
             return new CustomerOrderDto()
@@ -114,6 +128,9 @@ namespace ApotekHjartat.Api.Extensions
             };
         }
 
+        /// <summary>
+        /// Convert CustomerOrderStatus to dto model
+        /// </summary>
         public static CustomerOrderStatusDto ToDto(this CustomerOrderStatus value)
         {
             switch (value)
@@ -148,6 +165,9 @@ namespace ApotekHjartat.Api.Extensions
             }
         }
 
+        /// <summary>
+        /// Convert CustomerOrderStatusDto to db model
+        /// </summary>
 
         public static CustomerOrderStatus ToDbModel(this CustomerOrderStatusDto value)
         {
@@ -183,7 +203,9 @@ namespace ApotekHjartat.Api.Extensions
             }
         }
 
-
+        /// <summary>
+        /// Convert CustomerOrderRow to dto model
+        /// </summary>
         public static CustomerOrderRowDto ToDto(this CustomerOrderRow from)
         {
             return new CustomerOrderRowDto
@@ -197,18 +219,29 @@ namespace ApotekHjartat.Api.Extensions
                 Vat = from.Vat,
             };
         }
+
+        /// <summary>
+        /// Convert list of CustomerOrderRow to dto model, merge rx rows to a single prescription bag
+        /// </summary>
         private static List<CustomerOrderRowDto> ConvertCustomerOrderRowsToDto(ICollection<CustomerOrderRow> dbRows)
         {
             var dtoRows = new List<CustomerOrderRowDto>();
             var nonPrescribedRows = dbRows.Where(x => x.OrderRowType != CustomerOrderRowType.Prescription).Select(x => x.ToDto());
             var prescribedRows = dbRows.Where(x => x.OrderRowType == CustomerOrderRowType.Prescription).ToList();
-            var prescriptionBagRow = new CustomerOrderRowDto { ProductName = "Prescription Bag", OrderRowType = CustomerOrderRowTypeDto.Prescription, OrderedAmount = 1, PriceExclVat = prescribedRows.Sum(x => x.PriceExclVat), Vat = 0M };
+            var prescriptionBagRow = new CustomerOrderRowDto { 
+                ProductName = "Prescription Bag", 
+                OrderRowType = CustomerOrderRowTypeDto.Prescription, 
+                OrderedAmount = 1, 
+                PriceExclVat = prescribedRows.Sum(x => x.PriceExclVat * x.OrderedAmount), Vat = 0M };
             dtoRows.AddRange(nonPrescribedRows);
             dtoRows.Add(prescriptionBagRow);
 
             return dtoRows;
         }
 
+        /// <summary>
+        /// Convert CustomerOrderFilterDto to db model
+        /// </summary>
         public static CustomerOrderFilter ToDbModel(this CustomerOrderFilterDto from)
         {
             return new CustomerOrderFilter

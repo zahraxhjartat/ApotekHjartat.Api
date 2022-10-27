@@ -77,10 +77,10 @@ namespace ApotekHjartat.DbAccess.DataAccess
                 throw new NotFoundException($"No customer order found with id {id}");
             }
 
-            dbOrder.CustomerAddress = "";
-            dbOrder.CustomerEmailAddress = "";
-            dbOrder.CustomerFirstName = "";
-            dbOrder.CustomerSurname = "";
+            dbOrder.CustomerAddress = null;
+            dbOrder.CustomerEmailAddress = null;
+            dbOrder.CustomerFirstName = null;
+            dbOrder.CustomerSurname = null;
 
             await _context.SaveChangesAsync();
 
@@ -89,10 +89,25 @@ namespace ApotekHjartat.DbAccess.DataAccess
     }
     public interface ICustomerOrderDataAccess
     {
+        /// <summary>
+        /// Create customer order
+        /// </summary>
         Task<CustomerOrder> CreateCustomerOrder(CustomerOrder customerOrder);
+        /// <summary>
+        /// Get customer order by id
+        /// </summary>
         Task<CustomerOrder> GetCustomerOrderById(int id);
+        /// <summary>
+        /// Cancel customer order by id
+        /// </summary>
         Task<CustomerOrder> CancelCustomerOrderById(int id);
+        /// <summary>
+        /// Get list of orders by filter
+        /// </summary>
         Task<(List<CustomerOrder> list, int totalCount)> GetCustomerOrdersByFilter(CustomerOrderFilter filter);
+        /// <summary>
+        /// Set customer data to null
+        /// </summary>
         Task<CustomerOrder> DeleteCustomerOrderCustomerDataById(int id);
     }
 }

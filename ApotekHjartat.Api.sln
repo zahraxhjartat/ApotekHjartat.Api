@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Common", "Apo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{709CE08B-C87A-4640-BFF7-4255C5E19333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Api.UnitTest", "ApotekHjartat.Api.UnitTest\ApotekHjartat.Api.UnitTest.csproj", "{7FEE0E8A-FB31-4296-90C4-7550C450F89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Api.UnitTest", "Tests\ApotekHjartat.Api.UnitTest\ApotekHjartat.Api.UnitTest.csproj", "{7FEE0E8A-FB31-4296-90C4-7550C450F89A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApotekHjartat.Api.IntegrationTests", "ApotekHjartat.Api.IntegrationTests\ApotekHjartat.Api.IntegrationTests.csproj", "{0103E56B-632F-41DB-8B0F-D977F0F6346C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApotekHjartat.Api.IntegrationTest", "Tests\ApotekHjartat.Api.IntegrationTests\ApotekHjartat.Api.IntegrationTest.csproj", "{0103E56B-632F-41DB-8B0F-D977F0F6346C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
