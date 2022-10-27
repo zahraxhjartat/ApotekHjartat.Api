@@ -38,3 +38,4 @@ Annars, i det här fallet, kom jag bara att tänka på när kunder vill att man 
   baserat på maxxorderid.
 - migrationerna hade varit bättre, hade inte tid för att reverta när jag insåg att något var tokigt
 - namngivning hade varit bättre och mer konsekvent
+- utökat med mer relevant data man kan få när en kund lägger en order
