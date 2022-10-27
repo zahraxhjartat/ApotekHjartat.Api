@@ -81,18 +81,23 @@ namespace ApotekHjartat.DbAccess.Setup
                     CustomerOrderId = 1,
                     ProductId = 1,
                     OrderedAmount = 1,
+                    PriceExclVat = 662M,
+                    Vat = 0M
                 },
                 new CustomerOrderRow
                 {
                     CustomerOrderId = 1,
                     ProductId = 2,
                     OrderedAmount = 1,
+                    PriceExclVat = 103M
                 },
                new CustomerOrderRow
                 {
                     CustomerOrderId = 1,
                     ProductId = 4,
                     OrderedAmount = 2,
+                    PriceExclVat = 103,
+                    Vat = 0.25M
                 },
 
                 new CustomerOrderRow
@@ -100,18 +105,23 @@ namespace ApotekHjartat.DbAccess.Setup
                     CustomerOrderId = 2,
                     ProductId = 2,
                     OrderedAmount = 1,
+                    PriceExclVat = 103M
                 },
                 new CustomerOrderRow
                 {
                     CustomerOrderId = 2,
                     ProductId = 3,
                     OrderedAmount = 1,
+                    PriceExclVat = 189M,
+                    Vat = 0.25M
                 },
                   new CustomerOrderRow
                 {
                     CustomerOrderId = 2,
                     ProductId = 5,
                     OrderedAmount = 1,
+                    PriceExclVat = 79M,
+                    Vat = 0.25M
                 },
             };
         }
