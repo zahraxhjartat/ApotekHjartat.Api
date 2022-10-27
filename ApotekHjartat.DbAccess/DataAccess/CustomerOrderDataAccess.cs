@@ -89,10 +89,25 @@ namespace ApotekHjartat.DbAccess.DataAccess
     }
     public interface ICustomerOrderDataAccess
     {
+        /// <summary>
+        /// Create customer order
+        /// </summary>
         Task<CustomerOrder> CreateCustomerOrder(CustomerOrder customerOrder);
+        /// <summary>
+        /// Get customer order by id
+        /// </summary>
         Task<CustomerOrder> GetCustomerOrderById(int id);
+        /// <summary>
+        /// Cancel customer order by id
+        /// </summary>
         Task<CustomerOrder> CancelCustomerOrderById(int id);
+        /// <summary>
+        /// Get list of orders by filter
+        /// </summary>
         Task<(List<CustomerOrder> list, int totalCount)> GetCustomerOrdersByFilter(CustomerOrderFilter filter);
+        /// <summary>
+        /// Set customer data to null
+        /// </summary>
         Task<CustomerOrder> DeleteCustomerOrderCustomerDataById(int id);
     }
 }

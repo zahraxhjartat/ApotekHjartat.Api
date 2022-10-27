@@ -108,10 +108,25 @@ namespace ApotekHjartat.Api.Services
 
     public interface ICustomerOrderService
     {
+        /// <summary>
+        /// Create customer order
+        /// </summary>
         Task<CustomerOrderDto> CreateCustomerOrder(AddCustomerOrderDto data);
+        /// <summary>
+        /// Get customer order by id
+        /// </summary>
         Task<CustomerOrderDto> GetCustomerOrderById(int id);
+        /// <summary>
+        /// Cancel customer order by id if it is inactive
+        /// </summary>
         Task<CustomerOrderDto> CancelCustomerOrderById(int id);
+        /// <summary>
+        /// Get customer order by filter
+        /// </summary>
         Task<PaginatedResponseDto<CustomerOrderDto>> GetCustomerOrdersByFilter(CustomerOrderFilterDto filter);
+        /// <summary>
+        /// Delete customer data on customer order if status is inactive
+        /// </summary>
         Task<CustomerOrderDto> DeleteCustomerOrderCustomerDataById(int id);
     }
 }
