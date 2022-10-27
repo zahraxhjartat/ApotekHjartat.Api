@@ -13,8 +13,8 @@ namespace ApotekHjartat.Api.IntegrationTest.Extentions
         }
         public static StringContent ToStringContent(this object body)
         {
-            var s = JsonConvert.SerializeObject(body, new Newtonsoft.Json.Converters.StringEnumConverter());
-            return new StringContent(JsonConvert.SerializeObject(body, new Newtonsoft.Json.Converters.StringEnumConverter()), Encoding.UTF8, "application/json");
+            var json = JsonConvert.SerializeObject(body);
+            return new StringContent(json, System.Text.Encoding.UTF8, "application/json");
         }
     }
 }
