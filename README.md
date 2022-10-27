@@ -10,8 +10,10 @@ Då jag utgick från att det är ett admingränssnitt som kommer ropa på alla g
 ## Hur man kommer igång
 Om man startar projektet så kommer en lokal DB skapas. Man kan då använda swagger för att testa alla endpoints genom att skriva in /swagger efter projektets URL.
 Tänk på att du behöver ladda ner sql server Developer version och SSMS om du inte redan har det.
+Samt att man har satt en miljövariabel till namnet ASPNETCORE_ENVIRONMENT och värdet Developemnent.
+
 https://www.microsoft.com/sv-se/sql-server/sql-server-downloads?rtc=1
-Samt att man har satt en miljö variabel till namnet ASPNETCORE_ENVIRONMENT och värdet Developemnent.
+
 
 Man kan annars även använda sig av integrationtesterna :)
 
