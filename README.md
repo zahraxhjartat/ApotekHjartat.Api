@@ -35,3 +35,4 @@ Annars, i det här fallet, kom jag bara att tänka på när kunder vill att man 
   Jag vart osäker på om ni också använder maxx, isf hade jag grupperat de
   baserat på maxxorderid.
 - migrationerna hade varit bättre, hade inte tid för att reverta när jag insåg att något var tokigt
+- namngivning hade varit bättre och mer konsekvent
