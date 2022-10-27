@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using ApotekHjartat.Api.IntegrationTest.Extentions;
 using System.Linq;
+using System.Collections.Generic;
+using ApotekHjartat.DbAccess.Enums;
+using ApotekHjartat.Api.Enums;
 
 namespace ApotekHjartat.Api.Integration.Test.Controllers
 {
@@ -31,6 +34,42 @@ namespace ApotekHjartat.Api.Integration.Test.Controllers
         }
 
         [Fact]
+        public async Task GetCustomerOrderById_OrderDoesNotExist_ReturnNotFound()
+        {
+            // arrange
+            var customerOrderId = 999;
+            // act
+            var response = await _client.GetAsync($"{BaseUrl}{customerOrderId}");
+            // assert
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task GetCustomerOrderById_ContainsRx_ReturnObjectWithPrescriptionBag()
+        {
+            // arrange
+            var rxOrder = new CustomerOrder()
+            {
+                Created = DateTime.Now,
+                CustomerOrderRows = new List<CustomerOrderRow>() {
+                    new CustomerOrderRow() { OrderRowType = CustomerOrderRowType.Prescription, OrderedAmount = 1, PriceExclVat = 50M  },
+                    new CustomerOrderRow() {OrderRowType = CustomerOrderRowType.Prescription, OrderedAmount = 2, PriceExclVat = 69M}
+                    }
+                };
+            // act
+
+            var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+            dbContext.CustomerOrder.Add(rxOrder);
+            dbContext.SaveChanges();
+            var response = await _client.GetAsync($"{BaseUrl}{rxOrder.CustomerOrderId}");
+            // assert
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var returnedOrder = response.SerializeResponseContent<CustomerOrderDto>();
+            Assert.Equal(188M, returnedOrder.CustomerOrderRows.Select(x => x.PriceExclVat).FirstOrDefault());
+            Assert.Equal("Prescription Bag", returnedOrder.CustomerOrderRows.FirstOrDefault().ProductName);
+        }
+
+        [Fact]
         public async Task GetCustomerOrdersByFilter_FilterByDate_ReturnOnlyMatchingOrder()
         {
             // arrange
@@ -40,7 +79,7 @@ namespace ApotekHjartat.Api.Integration.Test.Controllers
             };
             var notMatch = new CustomerOrder()
             {
-             Created = DateTime.Now.AddDays(100)
+                Created = DateTime.Now.AddDays(100)
             };
             var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
             dbContext.CustomerOrder.Add(match);
@@ -62,5 +101,101 @@ namespace ApotekHjartat.Api.Integration.Test.Controllers
             Assert.DoesNotContain(notMatch.CustomerOrderId, filterResult.Page.Select(x => x.CustomerOrderId));
         }
 
+
+        [Fact]
+        public async Task CancelCustomerOrderById_Success_ReturnOrderWithStatusCancelled()
+        {
+            // arrange
+            var customerOrder = new CustomerOrder()
+            {
+                Created = DateTime.Now,
+                OrderStatus = CustomerOrderStatus.NotYetProccessed
+            };
+
+            var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+            dbContext.CustomerOrder.Add(customerOrder);
+            dbContext.SaveChanges();
+            // act
+            var response = await _client.PutAsync($"{BaseUrl}cancel/{customerOrder.CustomerOrderId}", HttpExtensions.EmptyBody);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var returnedOrder = response.SerializeResponseContent<CustomerOrderDto>();
+            Assert.Equal(CustomerOrderStatusDto.Cancelled, returnedOrder.OrderStatus);
+
+        }
+
+        [Fact]
+        public async Task CancelCustomerOrderById_OrderStatusIsPacking_ReturnNotAllowed()
+        {
+            // arrange
+            var customerOrder = new CustomerOrder()
+            {
+                Created = DateTime.Now,
+                OrderStatus = CustomerOrderStatus.Packing
+            };
+
+            var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+            dbContext.CustomerOrder.Add(customerOrder);
+            dbContext.SaveChanges();
+            // act
+            var response = await _client.PutAsync($"{BaseUrl}cancel/{customerOrder.CustomerOrderId}", HttpExtensions.EmptyBody);
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+        }
+
+
+        [Fact]
+        public async Task DeleteCustomerOrderCustomerDataById_InactiveOrder_ReturnOrderWithNoCustomerData()
+        {
+            // arrange
+            var customerOrder = new CustomerOrder()
+            {
+                Created = DateTime.Now,
+                CustomerAddress = "Dathomir Street 11",
+                CustomerEmailAddress = "darthmaul@gmail.com",
+                CustomerFirstName = "Darth",
+                CustomerSurname = "Maul",
+                OrderStatus = CustomerOrderStatus.Archived
+            };
+
+            var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+            dbContext.CustomerOrder.Add(customerOrder);
+            dbContext.SaveChanges();
+            // act
+            var response = await _client.PutAsync($"{BaseUrl}deletecustomerdata/{customerOrder.CustomerOrderId}", HttpExtensions.EmptyBody);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var returnedOrder = response.SerializeResponseContent<CustomerOrderDto>();
+            Assert.Null(returnedOrder.CustomerAddress);
+            Assert.Null(returnedOrder.CustomerEmailAddress);
+            Assert.Null(returnedOrder.CustomerFirstName);
+            Assert.Null(returnedOrder.CustomerSurname);
+
+        }
+
+        [Fact]
+        public async Task DeleteCustomerOrderCustomerDataById_ActiveOrder_ReturnBadRequest()
+        {
+            // arrange
+            var customerOrder = new CustomerOrder()
+            {
+                Created = DateTime.Now,
+                CustomerAddress = "Kashyyyk Street 1",
+                CustomerEmailAddress = "chewbacca@gmail.com",
+                CustomerFirstName = "Chewbacca",
+                CustomerSurname = "von Kashyyyk",
+                OrderStatus = CustomerOrderStatus.Picking
+            };
+
+            var dbContext = _factory.Services.CreateScope().ServiceProvider.GetRequiredService<OrderDbContext>();
+            dbContext.CustomerOrder.Add(customerOrder);
+            dbContext.SaveChanges();
+            // act
+            var response = await _client.PutAsync($"{BaseUrl}deletecustomerdata/{customerOrder.CustomerOrderId}", HttpExtensions.EmptyBody);
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+
+        }
     }
 }

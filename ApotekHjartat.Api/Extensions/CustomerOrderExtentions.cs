@@ -202,7 +202,11 @@ namespace ApotekHjartat.Api.Extensions
             var dtoRows = new List<CustomerOrderRowDto>();
             var nonPrescribedRows = dbRows.Where(x => x.OrderRowType != CustomerOrderRowType.Prescription).Select(x => x.ToDto());
             var prescribedRows = dbRows.Where(x => x.OrderRowType == CustomerOrderRowType.Prescription).ToList();
-            var prescriptionBagRow = new CustomerOrderRowDto { ProductName = "Prescription Bag", OrderRowType = CustomerOrderRowTypeDto.Prescription, OrderedAmount = 1, PriceExclVat = prescribedRows.Sum(x => x.PriceExclVat), Vat = 0M };
+            var prescriptionBagRow = new CustomerOrderRowDto { 
+                ProductName = "Prescription Bag", 
+                OrderRowType = CustomerOrderRowTypeDto.Prescription, 
+                OrderedAmount = 1, 
+                PriceExclVat = prescribedRows.Sum(x => x.PriceExclVat * x.OrderedAmount), Vat = 0M };
             dtoRows.AddRange(nonPrescribedRows);
             dtoRows.Add(prescriptionBagRow);
 

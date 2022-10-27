@@ -77,10 +77,10 @@ namespace ApotekHjartat.DbAccess.DataAccess
                 throw new NotFoundException($"No customer order found with id {id}");
             }
 
-            dbOrder.CustomerAddress = "";
-            dbOrder.CustomerEmailAddress = "";
-            dbOrder.CustomerFirstName = "";
-            dbOrder.CustomerSurname = "";
+            dbOrder.CustomerAddress = null;
+            dbOrder.CustomerEmailAddress = null;
+            dbOrder.CustomerFirstName = null;
+            dbOrder.CustomerSurname = null;
 
             await _context.SaveChangesAsync();
 
