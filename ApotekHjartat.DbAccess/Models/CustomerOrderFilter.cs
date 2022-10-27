@@ -1,6 +1,5 @@
 ﻿using ApotekHjartat.DbAccess.Enums;
 using System;
-using System.Net.Http;
 
 namespace ApotekHjartat.DbAccess.Models
 {
@@ -13,6 +12,5 @@ namespace ApotekHjartat.DbAccess.Models
 
         public int Skip { get; set; }
         public int Take { get; set; }
-
     }
 }
