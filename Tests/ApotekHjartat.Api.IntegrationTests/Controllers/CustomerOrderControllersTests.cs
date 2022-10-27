@@ -18,6 +18,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ApotekHjartat.DbAccess.Enums;
 using ApotekHjartat.Api.Enums;
+using Newtonsoft.Json;
 
 namespace ApotekHjartat.Api.Integration.Test.Controllers
 {
@@ -31,6 +32,32 @@ namespace ApotekHjartat.Api.Integration.Test.Controllers
         {
             _factory = factory.InitializeWithHostFromCustomFactory();
             _client = _factory.CreateClient();
+        }
+
+        [Fact]
+        public async Task CreateCustomerOrder_ReturnCustomerOrderWithClassifiedInformation()
+        {
+            var data = new AddCustomerOrderDto()
+            {
+                CustomerAddress = "Kashyyyk Street 1",
+                CustomerEmailAddress = "chewbacca@gmail.com",
+                CustomerFirstName = "Chewbacca",
+                CustomerSurname = "von Kashyyyk",
+                CustomerOrderRows = new List<BasketRowDto>() {
+                    new BasketRowDto() { BasketRowType = CustomerOrderRowTypeDto.Prescription, OrderedAmount = 1, PriceExclVat = 50, ProductId = 1 , ProductName = "test product 1" },
+                    new BasketRowDto() {BasketRowType = CustomerOrderRowTypeDto.Prescription, OrderedAmount = 2, PriceExclVat = 69, ProductId = 2, ProductName = "test product 2"}
+                    }
+            };
+
+            var response = await _client.PostAsync($"{BaseUrl}add", data.ToStringContent());
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var returnedOrder = response.SerializeResponseContent<CustomerOrderDto>();
+            Assert.Equal(data.CustomerAddress, returnedOrder.CustomerAddress);
+            Assert.Equal(data.CustomerEmailAddress, returnedOrder.CustomerEmailAddress);
+            Assert.Equal(data.CustomerFirstName, returnedOrder.CustomerFirstName);
+            Assert.Equal(data.CustomerSurname, returnedOrder.CustomerSurname);
+            Assert.NotEqual("Prescription bag", returnedOrder.CustomerOrderRows.FirstOrDefault().ProductName);
         }
 
         [Fact]
