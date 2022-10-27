@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApotekHjartat.Api
 {
@@ -78,7 +79,7 @@ namespace ApotekHjartat.Api
                 // migrate and seed database locally
                 using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
                 var dbContext = serviceScope.ServiceProvider.GetService<OrderDbContext>();
-                dbContext.SetupLocalDb();
+                dbContext.SetupLocalDb().GetAwaiter();
 
                 app.UseSwagger(c =>
                 {
